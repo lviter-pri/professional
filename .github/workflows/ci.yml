@@ -19,11 +19,12 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        # 核心：同时安装 material 主题和所有必要的 markdown 扩展包
+        # 添加了 mkdocstrings[python] 以满足插件需求
         run: |
           pip install mkdocs-material 
           pip install mkdocs-mermaid2-plugin 
           pip install pymdown-extensions
+          pip install mkdocstrings[python]
 
       - name: Build and Deploy
         run: mkdocs gh-deploy --force
