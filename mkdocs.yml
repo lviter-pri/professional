@@ -1,3 +1,66 @@
 site_name: 我的技术文档
+site_url: https://lviter-pri.github.io/professional/
+repo_url: https://github.com/lviter-pri/professional
+repo_name: lviter-pri/professional
+
+# 1. 基础主题配置
 theme:
   name: material
+  palette:
+    # 自动切换深色/浅色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换浅色模式
+  features:
+    - navigation.tabs          # 顶部导航栏
+    - navigation.sections      # 侧边栏分组
+    - navigation.expand        # 默认展开侧边栏
+    - navigation.indexes       # 允许目录拥有自己的页面
+    - toc.follow               # 目录跟随滚动
+    - search.suggest           # 搜索智能建议
+    - search.highlight         # 搜索结果高亮
+    - content.code.copy        # 代码一键复制
+    - content.code.annotate    # 代码注释标注
+
+# 2. Markdown 功能增强（必须）
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:    # 完美支持代码块嵌套与 Mermaid
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition               # 提示框（如：info, warning, danger）
+  - pymdownx.details         # 可折叠提示框
+  - pymdownx.tabbed:         # 多标签页
+      alternate_style: true
+  - pymdownx.tasklist:       # 任务列表
+      custom_checkbox: true
+  - pymdownx.emoji:          # 支持 emoji
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# 3. 插件配置（搜索 + 导航）
+plugins:
+  - search:
+      lang: ["en", "zh"]
+  - mkdocstrings              # (可选) 如果你写 Python 文档，这个插件非常强大
+
+# 4. 文档目录设置
+docs_dir: docs
