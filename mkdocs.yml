@@ -6,17 +6,19 @@ repo_name: lviter-pri/professional
 theme:
   name: material
   palette:
+    # 浅色模式：采用清晰的深蓝色系
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: deep blue
+      accent: deep purple
       toggle:
         icon: material/brightness-7
         name: 切换深色模式
+    # 深色模式：采用更沉稳的 slate 结合高亮蓝
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: deep blue
+      accent: blue
       toggle:
         icon: material/brightness-4
         name: 切换浅色模式
@@ -25,11 +27,13 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.indexes
+    - navigation.tracking # 自动更新 URL 哈希，增加专业感
     - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.code.annotate
+    - content.tooltips # 鼠标悬停显示工具提示
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -43,7 +47,7 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - admonition
+  - admonition # 原生提示框，非常推荐使用
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
