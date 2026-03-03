@@ -1,91 +1,14 @@
-# Mermaid
+## Git分支管理
 
-## 简介
+发布分支：test - 版本号1.0.0
 
-在线网站：https://mermaid.live/
+测试环境分支：stg/uat - 版本号0.0.1/0.0.2
 
-## **一、简介**
+开发分支：feature-1.0.1
 
-Mermaid是一种流行的标记语言，用于绘制各种图表和图形，如流程图、时序图和类图等。
+预发布分支：pre_test_2026
 
-**1.1 核心功能**
-
-1. 支持多种图表类型
-   1. 流程图
-   2. 时序图
-   3. 类图
-   4. 状态图
-   5. 甘特图
-   6. 时间线图
-   7. Git流图
-   8. ......等等
-2. MarkDown支持
-3. 简单学习无需关注图标样式
-
-**1.2 适用场景**
-
-- 技术方案设计-技术文档
-- 项目管理-甘特图展示任务进度
-- 需求梳理-支持流程图、时序图
-
-**1.3 集成方式**
-
-- 在线工具
-  - [Online FlowChart & Diagrams Editor - Mermaid Live Editor](https://mermaid.live/edit#pako:eNpVjc1ugzAQhF_F2lMrkSguMT8-VGpIm0uk9pBTIQcrLBg12MgYpSnw7jVEVds9zWi-me3hpHMEDsVZX05SGEsO20wRd09pIk3V2lq0R7JYPA47tKTWCq8D2dztNGmlbppKlfc3fjNBJOn3E4bEykp9jLcomfuvCgeyTfeisbo5_k0OFz2Q57R6k27-fyINutZLWgheiMVJGJIIMyPgQWmqHLg1HXpQo6nFZKGf0gysxBoz4E7mWIjubDPI1OhqjVDvWtc_TaO7UoKbP7fOdU0uLG4rURrxi6DK0SS6UxY4jeYJ4D18Amd0tWQ0ipkTD2EcxMyDq4P8aMlCxiJK1-Gaxutg9OBr_ur4OKCOXfl-SFcs8Mdvsmp3Ig)
-  - [中文Mermaid - 流程图、关系图在线画图、生成和编辑器](https://www.min2k.com/tools/mermaid/)
-- MarkDown渲染，IDE可以直接装插件即可。或者Typora工具
-- 网页集成，Js引入库文件，HTML页面中使用
-
-**1.4 优势**
-
-- 免费，开源
-- 跨平台，方便快捷，支持Markdown，浏览器，开发工具等
-- 响应式：图表自动适配，网页端工具可以直接导出svg，png等图片格式
-
-## **二、语法及画图**
-
-### 2.1 语法
-
-所有图表定义都是以图表类型的 **声明** 开始，之后是图表及其内容的定义。具体图例可以接着看
-
-### 2.2 画图示例
-
-#### 2.2.1 流程图
-
-**2.2.1.1 流程图方向**：flowchart TD/TB
-
-1. TB - 从上到下
-2. TD - 从上到下/与从上到下相同
-3. BT - 从下到上
-4. RL - 从右到左
-5. LR - 从左到右
-
-**2.2.1.2 连接线解释**：→
-
-| 长度         | 1    | 2     | 3      |
-| :----------- | :--- | :---- | :----- |
-| 正常         | ---  | ----  | -----  |
-| 带箭头正常   | -->  | --->  | ---->  |
-| 粗线         | ===  | ====  | =====  |
-| 带箭头的粗线 | ==>  | ===>  | ====>  |
-| 虚线         | -.-  | -..-  | -...-  |
-| 带箭头的虚线 | -.-> | -..-> | -...-> |
-
-**2.2.1.3 各种节点形状**
-
-![跨越新科技 > Mermaid > image2025-4-19_11-9-54.png](http://wewiki.ky-tech.com.cn/download/attachments/130402087/image2025-4-19_11-9-54.png?version=1&modificationDate=1745032195000&api=v2)
-
-
-
-```mermaid
-flowchart   
-id1[(数据库)]   
-id2(这是框中的文本)   
-id3([这是框中的文本])   
-id4{这是框中的文本}   
-id5[/这是框中的文本/]   
-id6[/梯形\]
-```
+### 2.2.1 流程图
 
 
 
@@ -164,11 +87,7 @@ sequenceDiagram
     end
 ```
 
-
-
-#### 2.2.3 类图
-
-#### 2.2.4 状态图
+#### 2.2.3 状态图
 
 ```mermaid
 stateDiagram-v2
@@ -204,7 +123,7 @@ stateDiagram-v2
 
 
 
-#### 2.2.5 甘特图
+#### 2.2.4 甘特图
 
 ```mermaid
 gantt
@@ -227,7 +146,7 @@ gantt
     TEST 分支合并 & 打Tag  :milestone, m1, after pre1, 0d
 ```
 
-#### 2.2.6 Git图
+#### 2.2.5 Git图
 
 ```mermaid
 gitGraph
@@ -303,9 +222,3 @@ graph TD
     style CI fill:#d4edda,stroke:#28a745
     style P stroke-dasharray: 5 5
 ```
-
-
-
-## **三、文档&私有部署**
-
-3.1 文档：[关于 Mermaid | Mermaid中文文档](https://docs.min2k.com/zh/mermaid/intro/)
