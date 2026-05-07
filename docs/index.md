@@ -4,6 +4,8 @@
 
 [技术无止境-能解决问题才是时代所需](https://lviter-pri.github.io/professional/)，脱离了业务空谈技术都是耍流氓
 
+ **Java 语言的设计初衷：Write once, run anywhere。我的目标是：Design once, scale everywhere.**
+
 ## 1. 精深训练的理念
 
 热爱 \| 重复 \| 坚持
