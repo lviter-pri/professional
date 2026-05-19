@@ -181,23 +181,24 @@ public class Application {
 
 ### 6.1 项目结构
 
-```
-myapp/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/example/app/
-│       │       ├── controller/
-│       │       ├── service/
-│       │       ├── repository/
-│       │       ├── entity/
-│       │       ├── dto/
-│       │       ├── config/
-│       │       └── Application.java
-│       └── resources/
-│           ├── application.yml
-│           └── schema.sql
-└── pom.xml
+```mermaid
+flowchart TD
+    A[myapp/]
+    A --> B[src/]
+    B --> C[main/]
+    C --> D[java/]
+    D --> E[com/example/app/]
+    E --> F[controller/]
+    E --> G[service/]
+    E --> H[repository/]
+    E --> I[entity/]
+    E --> J[dto/]
+    E --> K[config/]
+    E --> L[Application.java]
+    C --> M[resources/]
+    M --> N[application.yml]
+    M --> O[schema.sql]
+    A --> P[pom.xml]
 ```
 
 ### 6.2 配置管理
