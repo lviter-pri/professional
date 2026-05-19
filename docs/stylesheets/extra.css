@@ -1,67 +1,82 @@
 /* =========================
-   左侧目录（导航栏）优化
+   左侧目录层级优化（清晰分组）
    ========================= */
 
-/* 整体导航字体更简约 */
+/* 左侧整体 padding */
+.md-sidebar__scrollwrap {
+  padding: 0.8rem 0.4rem;
+}
+
+/* 普通条目（文章链接） */
 .md-nav__link {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  padding: 0.25rem 0.6rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  padding: 0.28rem 0.65rem;
+  border-radius: 10px;
+  opacity: 0.88;
+  transition: all 0.15s ease;
 }
 
-/* hover 效果更柔和 */
+/* hover 更轻一点 */
 .md-nav__link:hover {
-  background: rgba(100, 100, 100, 0.12);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* 当前选中的页面（active item）更明显 */
+/* 当前选中的文章 */
 .md-nav__link--active {
-  font-weight: 600;
-  background: rgba(63, 81, 181, 0.15); /* indigo 轻背景 */
+  font-weight: 700;
+  opacity: 1;
+  background: rgba(63, 81, 181, 0.20); /* indigo 背景 */
   border-left: 3px solid #3f51b5;
   padding-left: 0.55rem;
 }
 
-/* 当前选中的标题也突出一点 */
-.md-nav__title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  padding: 0.6rem 0.6rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-/* 分组标题更有层次 */
+/* 分组标题（Section，比如 JVM、IO模型） */
 .md-nav__item--section > .md-nav__link {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-top: 0.4rem;
-  opacity: 0.95;
+  font-size: 0.88rem;
+  font-weight: 800;
+  opacity: 1;
+  margin-top: 0.8rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-/* 子目录缩进更清晰 */
+/* 分组标题 hover */
+.md-nav__item--section > .md-nav__link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 子目录缩进更明显 */
 .md-nav__list .md-nav__list {
-  padding-left: 0.8rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  margin-left: 0.4rem;
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
 }
 
-/* 让目录整体更紧凑，但不挤 */
-.md-sidebar__scrollwrap {
-  padding: 0.5rem 0.3rem;
+/* 让子条目更像树结构 */
+.md-nav__list .md-nav__list .md-nav__link {
+  font-size: 0.80rem;
+  opacity: 0.78;
 }
 
-/* 目录滚动条更细更现代（Chrome） */
+/* 子条目 hover */
+.md-nav__list .md-nav__list .md-nav__link:hover {
+  opacity: 1;
+}
+
+/* 滚动条更细 */
 .md-sidebar__scrollwrap::-webkit-scrollbar {
   width: 6px;
 }
 
 .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 10px;
 }
 
 .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
 }
