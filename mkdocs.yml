@@ -66,7 +66,267 @@ plugins:
       lang: ["en", "zh"]
   - mkdocstrings:
       default_handler: python
-      
+
+
+nav:
+  - 首页: index.md
+  - AI编程:
+    - OpenSpec: 'AI编程/OpenSpec/Trae + OpenSpec 实践教程.md'
+    - Rules:
+      - 索引: 'AI编程/Rules/index.md'
+      - 公司规范: 'AI编程/Rules/company_rule/company_rule.md'
+      - AI默认规范: 'AI编程/Rules/company_rule/ai_default_rule.md'
+      - 数据库规范: 'AI编程/Rules/company_rule/database_rule.md'
+      - 开发规范: 'AI编程/Rules/company_rule/develop-wiki.md'
+      - Git规范: 'AI编程/Rules/company_rule/git_rule.md'
+    - Skills:
+      - 索引: 'AI编程/skills/devlop-doc/develop-design.md'
+      - 框架日志:
+        - 索引: 'AI编程/skills/framework-logging/skill.md'
+        - 基础使用: 'AI编程/skills/framework-logging/basic/skill.md'
+        - 配置详解: 'AI编程/skills/framework-logging/config/skill.md'
+        - MDC追踪: 'AI编程/skills/framework-logging/mdc/skill.md'
+        - 敏感信息: 'AI编程/skills/framework-logging/sensitive/skill.md'
+        - 问题排查: 'AI编程/skills/framework-logging/troubleshooting/skill.md'
+      - Git提交: 'AI编程/skills/git-commit/SKILL.md'
+  - Java核心:
+    - 索引: 'Java-核心/README.md'
+    - JVM:
+      - 索引: 'Java-核心/JVM/README.md'
+      - 深入理解JVM:
+        - 索引: 'Java-核心/JVM/深入理解JVM-jdk1.7/README.md'
+        - 自动内存管理机制: 'Java-核心/JVM/深入理解JVM-jdk1.7/自动内存管理机制.md'
+        - HotSpot虚拟机对象探秘: 'Java-核心/JVM/深入理解JVM-jdk1.7/HotSpot虚拟机对象探秘.md'
+        - 垃圾收集器与内存分配策略: 'Java-核心/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.md'
+        - JVM调优-jdk1.8: 'Java-核心/JVM/深入理解JVM-jdk1.7/JVM调优-jdk1.8.md'
+        - OutOfMemoryError异常: 'Java-核心/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.md'
+    - Java基础:
+      - Arrays排序算法: 'Java-核心/Java基础/Arrays.sort排序算法详解.md'
+      - Java动态代理: 'Java-核心/Java基础/Java动态代理.md'
+      - Java序列化: 'Java-核心/Java基础/Java序列化.md'
+      - 深拷贝浅拷贝: 'Java-核心/Java基础/深拷贝浅拷贝.md'
+      - 常用Lambda: 'Java-核心/常用lambda表达式.md'
+    - 多线程:
+      - 索引: 'Java-核心/多线程/一部分并发理论基础.md'
+      - AQS: 'Java-核心/多线程/AQS.md'
+      - CAS自旋锁: 'Java-核心/多线程/CAS自旋锁.md'
+      - CompletableFuture: 'Java-核心/多线程/CompletableFuture详解.md'
+      - CopyOnWrite: 'Java-核心/多线程/CopyOnWrite详解.md'
+      - JMM与Volatile: 'Java-核心/多线程/JMM内存模型Volatile关键字.md'
+      - Java锁: 'Java-核心/多线程/Java中有哪些锁.md'
+      - ReentrantLock: 'Java-核心/多线程/ReentrantLock.md'
+      - Synchronized: 'Java-核心/多线程/Synchronized锁详解.md'
+      - ThreadLocal: 'Java-核心/多线程/ThreadLocal详解.md'
+      - 公平锁非公平锁: 'Java-核心/多线程/公平锁和非公平锁.md'
+      - 线程池参数: 'Java-核心/多线程/线程池有哪些核心参数.md'
+      - 并发工具类: 'Java-核心/多线程/二部分并发工具类详解.md'
+      - 多线程面试: 'Java-核心/多线程/多线程面试题总结.md'
+    - 集合:
+      - 索引: 'Java-核心/集合/README.md'
+      - Collection:
+        - 索引: 'Java-核心/集合/Collection/README.md'
+        - ArrayList: 'Java-核心/集合/Collection/ArrayList详解.md'
+        - CopyOnWriteArrayList: 'Java-核心/集合/Collection/CopyOnWriteArrayList详解.md'
+        - HashSet: 'Java-核心/集合/Collection/HashSet详解.md'
+        - Queue: 'Java-核心/集合/Collection/Queue.md'
+        - Java集合面试: 'Java-核心/集合/Collection/Java集合面试.md'
+      - Map:
+        - 索引: 'Java-核心/集合/Map/Map与HashMap详解.md'
+        - ConcurrentHashMap: 'Java-核心/集合/Map/ConcurrentHashMap详解.md'
+        - HashMap容量与扩容: 'Java-核心/集合/Map/HashMap容量设置，如何扩容.md'
+        - HashMap红黑树: 'Java-核心/集合/Map/Java8中为什么HashMap要用红黑树.md'
+      - Fail-Fast: 'Java-核心/集合/Fail-Fast.md'
+      - ArrayList详解: 'Java-核心/集合/ArrayList详解.md'
+    - 设计模式:
+      - 索引: 'Java-核心/设计模式/README.md'
+      - 设计模式基础: 'Java-核心/设计模式/设计模式基础概念.md'
+      - 创建型:
+        - 索引: 'Java-核心/设计模式/创建型模型/README.md'
+        - 单例模式: 'Java-核心/设计模式/创建型模型/单例模式.md'
+        - 简单工厂模式: 'Java-核心/设计模式/创建型模型/简单工厂模式.md'
+      - 行为型:
+        - 索引: 'Java-核心/设计模式/行为模型/README.md'
+        - 命令模式: 'Java-核心/设计模式/行为模型/命令模式.md'
+        - 模板方法: 'Java-核心/设计模式/行为模型/模板方法设计模式.md'
+        - 策略模式: 'Java-核心/设计模式/行为模型/策略模式.md'
+        - 责任链模式: 'Java-核心/设计模式/行为模型/责任链模式.md'
+    - 网络:
+      - 计算机网络: 'Java-核心/网络/计算机网络.md'
+      - TCP协议: 'Java-核心/网络/TCP协议.md'
+      - HTTP:
+        - HTTP常见面试: 'Java-核心/网络/http/HTTP常见面试.md'
+        - HTTP错误码: 'Java-核心/网络/http/HTTP常见错误码.md'
+    - IO模型:
+      - 索引: 'Java-核心/IO模型/README.md'
+    - 数据处理:
+      - JSON: 'Java-核心/数据处理/json.md'
+  - 中间件:
+    - 索引: '中间件/README.md'
+    - ElasticSearch:
+      - 搜索引擎: '中间件/ElasticSearch/搜索引擎.md'
+      - 安装ELK: '中间件/ElasticSearch/安装ELK.md'
+      - Es基础语法: '中间件/ElasticSearch/Es基础语法.md'
+      - Es基础查询: '中间件/ElasticSearch/Es基础查询.md'
+      - Es通用查询: '中间件/ElasticSearch/es通用查询.md'
+      - Nested嵌套: '中间件/ElasticSearch/Es-Nested嵌套查询.md'
+      - RestHighLevelClient: '中间件/ElasticSearch/Es7.4.2-RestHighLevelClient增删改查.md'
+      - es复杂统计: '中间件/ElasticSearch/es复杂统计-绝对值.md'
+    - PostgreSQL:
+      - 索引: '中间件/Postgressql/ReadME.md'
+      - 初始Psql: '中间件/Postgressql/初始Psql.md'
+    - Redis:
+      - 索引: '中间件/redis/README.md'
+      - Redis数据结构: '中间件/redis/Redis数据结构.md'
+      - Redis延迟队列: '中间件/redis/Redis实现延迟队列.md'
+      - Redis基础篇: '中间件/redis/Redis核心1-11基础篇.md'
+      - Redis高级篇: '中间件/redis/Redis核心12-21高级篇.md'
+    - 消息队列:
+      - 索引: '中间件/消息队列/消息队列.md'
+      - Kafka:
+        - Kafka入门: '中间件/消息队列/Kafka/Kafka入门.md'
+        - Kafka重复消费: '中间件/消息队列/Kafka/Kafka消费超时导致重复消费.md'
+      - RabbitMQ:
+        - RabbitMQ安装使用: '中间件/消息队列/RabbitMq/RabbitMQ安装及使用.md'
+  - 分布式与微服务:
+    - 索引: '分布式与微服务/README.md'
+    - Spring:
+      - 索引: '分布式与微服务/Spring/README.md'
+      - SpringAOP: '分布式与微服务/Spring/SpringAOP.md'
+      - Spring事务: '分布式与微服务/Spring/Spring事务.md'
+      - InitializingBean: '分布式与微服务/Spring/InitillizingBean.md'
+      - TransactionSynchronizationManager: '分布式与微服务/Spring/TransactionSynchronizationManager.md'
+      - 循环依赖: '分布式与微服务/Spring/循环依赖.md'
+      - 大事务优化: '分布式与微服务/Spring/大事务处理优化.md'
+      - 很老的东西: '分布式与微服务/Spring/很老的东西.md'
+    - SpringBoot:
+      - SpringBoot理解: '分布式与微服务/SpringBoot/SpringBoot理解.md'
+      - Spring与SpringBoot对比: '分布式与微服务/SpringBoot/Spring与SpringBoot对比.md'
+      - 启动原理: '分布式与微服务/SpringBoot/启动原理解析.md'
+      - 自动配置原理: '分布式与微服务/SpringBoot/自动配置原理.md'
+      - SpringApplication: '分布式与微服务/SpringBoot/SpringApplication解析.md'
+      - CGLIB: '分布式与微服务/SpringBoot/CGLIB使用原理.md'
+      - Arthas: '分布式与微服务/SpringBoot/SpringBoot-Arthas.md'
+      - 可执行Jar: '分布式与微服务/SpringBoot/可执行Jar原理.md'
+      - 并发请求: '分布式与微服务/SpringBoot/并发请求处理.md'
+      - 循环依赖: '分布式与微服务/SpringBoot/循环依赖问题.md'
+      - 自定义Starter: '分布式与微服务/SpringBoot/自定义Starter.md'
+      - 配置文件加密: '分布式与微服务/SpringBoot/配置文件加密.md'
+    - SpringCloud:
+      - 微服务SpringCloud: '分布式与微服务/SpringCloud/微服务SpringCloud.md'
+      - Eureka: '分布式与微服务/SpringCloud/Eureka.md'
+      - Eureka与Zookeeper: '分布式与微服务/SpringCloud/Eureka和Zookeeper有什么区别.md'
+      - Feign: '分布式与微服务/SpringCloud/Feign.md'
+      - Hystrix: '分布式与微服务/SpringCloud/Hystrix.md'
+      - Ribbon负载均衡: '分布式与微服务/SpringCloud/Ribbon如何做负载均衡.md'
+      - 网关对比: '分布式与微服务/SpringCloud/Zuul,Gateway,Nginx有什么区别.md'
+    - SpringFramework:
+      - 索引: '分布式与微服务/SpringFramework/README.md'
+      - ApplicationContext: '分布式与微服务/SpringFramework/源码解析之ApplicationContext.md'
+    - dubbo:
+      - 索引: '分布式与微服务/dubbo/README.md'
+      - Dubbo: '分布式与微服务/dubbo/Dubbo.md'
+      - 分布式服务框架: '分布式与微服务/dubbo/分布式服务框架.md'
+    - 微服务保护:
+      - 防止雪崩: '分布式与微服务/微服务保护/防止雪崩.md'
+      - 限流降级与熔断: '分布式与微服务/微服务保护/限流降级与熔断.md'
+    - ORM框架:
+      - 索引: '分布式与微服务/ORM框架/README.md'
+      - Mybatis详解: '分布式与微服务/ORM框架/Mybatis详解.md'
+    - DDD领域:
+      - 传统分包: '分布式与微服务/DDD领域/传统分包.md'
+  - 大数据组件:
+    - ClickHouse: '大数据组件/ClickHouse集群安装.md'
+    - 数据研发流程: '大数据组件/数据研发流程.md'
+    - Groovy:
+      - Groovy基础语法: '大数据组件/Groovy/Groovy基础语法.md'
+    - Presto:
+      - PrestoSQL原理: '大数据组件/Presto/PrestoSQL原理分析.md'
+    - StarRocks-DorisDB:
+      - 索引: '大数据组件/StarRocks-DorisDB/README.md'
+      - DorisDB了解: '大数据组件/StarRocks-DorisDB/DorisDB了解.md'
+      - DorisDB语法: '大数据组件/StarRocks-DorisDB/DorisDB语法.md'
+    - Hadoop:
+      - 初识: '大数据组件/hadoop/初识.md'
+    - Hive:
+      - hive基础语法DDL: '大数据组件/hive/hive基础语法DDL.md'
+      - hive语法: '大数据组件/hive/hive语法.md'
+    - 会员大数据: '大数据组件/member/会员大数据相关.md'
+    - 调度:
+      - AzKaban多任务流: '大数据组件/调度/AzKaban/多任务流并行.md'
+  - 数据库:
+    - 索引: '数据库/README.md'
+    - MySQL:
+      - 系统学习Mysql: '数据库/mysql/系统学习Mysql.md'
+      - Mysql实战基础篇: '数据库/mysql/Mysql实战-基础篇.md'
+      - Mysql实战实践篇: '数据库/mysql/Mysql实战-实践篇.md'
+      - ACID与事务隔离: '数据库/mysql/ACID与事务隔离级别.md'
+      - MVCC: '数据库/mysql/MVCC.md'
+      - Mysql踩坑null: '数据库/mysql/Mysql踩坑-null查询.md'
+      - 常用SQL聚合: '数据库/mysql/常用SQL聚合.md'
+    - ShardingSphere:
+      - ShardingSphere简介: '数据库/ShardingSphere/ShardingSphere简介及使用.md'
+  - 数据结构算法:
+    - 索引: '数据结构算法/README.md'
+    - 线性表: '数据结构算法/线性表.md'
+    - Arrays排序: '数据结构算法/算法/Arrays.sort排序算法详解.md'
+    - 限流算法: '数据结构算法/算法/限流算法.md'
+    - 算法:
+      - 索引: '数据结构算法/算法/README.md'
+      - 两数之和: '数据结构算法/算法/算法题/两数之和.md'
+      - 两数相加: '数据结构算法/算法/算法题/两数相加.md'
+      - 无重复字符最长子串: '数据结构算法/算法/算法题/无重复字符的最长字串.md'
+      - 两个正序数组中位数: '数据结构算法/算法/算法题/两个正序数组的中位数.md'
+  - 方案:
+    - 索引: '方案/解决方案/README.md'
+    - 企业项目框架:
+      - 索引: '方案/企业项目框架/README.md'
+      - 项目研发规范:
+        - 索引: '方案/企业项目框架/项目研发基础规范/README.md'
+        - Git分支管理: '方案/企业项目框架/项目研发基础规范/Git分支管理.md'
+        - MapStruct: '方案/企业项目框架/项目研发基础规范/MapStruct.md'
+        - 日志规范: '方案/企业项目框架/项目研发基础规范/日志规范.md'
+        - 代码结构规范: '方案/企业项目框架/项目研发基础规范/项目代码结构规范.md'
+    - 偏门研究:
+      - Apache CXF: '方案/偏门但研究过的东西/Apache CXF.md'
+      - SpringSecurity: '方案/偏门但研究过的东西/SpringSecurity.md'
+    - 解决方案:
+      - 7千万用户分库分表: '方案/解决方案/7千万+用户数据分库分表.md'
+      - AppleId授权登录: '方案/解决方案/AppleId第三方授权登录流程调研.md'
+      - Idea远程调试: '方案/解决方案/Idea远程调试监控端口.md'
+      - Java获取真实IP: '方案/解决方案/Java获取真实ip地址.md'
+      - Jenkins脚本: '方案/解决方案/Jenkins脚本实例.md'
+      - MybatisPlus多数据源: '方案/解决方案/MybatisPlus多数据源.md'
+      - Mysql分库分表: '方案/解决方案/Mysql分库分表.md'
+      - OAuth2.0: '方案/解决方案/OAuth2.0授权登录调研.md'
+      - TiDB性能测试: '方案/解决方案/TiDB性能测试.md'
+      - nacos使用: '方案/解决方案/nacos使用文档说明简介.md'
+      - 分布式事务: '方案/解决方案/分布式事务.md'
+      - 延迟队列: '方案/解决方案/延迟队列解决方案.md'
+      - 状态机: '方案/解决方案/状态机图.md'
+      - 异常问题排查:
+        - Transaction-rollback-only: '方案/解决方案/异常问题排查/Transaction-rollback-only.md'
+      - 项目设计方案:
+        - MYSQL热表加字段: '方案/解决方案/项目设计方案/MYSQL热表加字段.md'
+        - 促成交易系统: '方案/解决方案/项目设计方案/促成交易系统搭建.md'
+        - 支付中台系统: '方案/解决方案/项目设计方案/支付中台系统搭建.md'
+        - 敏感词过滤: '方案/解决方案/项目设计方案/敏感词过滤.md'
+        - 费用项计算系统: '方案/解决方案/项目设计方案/费用项计算系统搭建.md'
+  - 编程基础:
+    - linux:
+      - 索引: '编程基础/linux/README.md'
+      - centos基础: '编程基础/linux/centos/基础操作命令.md'
+    - 计算机网络原理:
+      - 索引: '编程基础/计算机网络原理/README.md'
+      - 计算机网络概述: '编程基础/计算机网络原理/计算机网络概述.md'
+    - QPS概念: '编程基础/QPS概念.md'
+    - 与或异或: '编程基础/与、或、异或.md'
+  - 工具类:
+    - Mermaid: '工具类/Mermaid.md'
+    - java调用方法: '工具类/java调用方法类.md'
+    - 加解密: '工具类/加解密类/加解密操作.md'
+    - 图片处理: '工具类/图片处理类/ImageUtil.java'
+    - 日常工具: '工具类/日常工具处理类/订单号转换SQL.md'
+
 extra_css:
   - stylesheets/extra.css
 
