@@ -30,15 +30,16 @@
 
 ## 二、目录结构
 
-```
-分布式与微服务/
-├── DDD领域/              # 领域驱动设计
-├── ORM框架/              # 持久层框架
-├── Spring/               # Spring Framework 核心
-├── SpringBoot/           # Spring Boot 实践
-├── SpringCloud/          # Spring Cloud 微服务组件
-├── SpringFramework/      # Spring 源码解析
-└── dubbo/                # Dubbo 分布式框架
+```mermaid
+flowchart TD
+    A[分布式与微服务/]
+    A --> B[DDD领域/ - 领域驱动设计]
+    A --> C[ORM框架/ - 持久层框架]
+    A --> D[Spring/ - Spring Framework 核心]
+    A --> E[SpringBoot/ - Spring Boot 实践]
+    A --> F[SpringCloud/ - Spring Cloud 微服务组件]
+    A --> G[SpringFramework/ - Spring 源码解析]
+    A --> H[dubbo/ - Dubbo 分布式框架]
 ```
 
 ---

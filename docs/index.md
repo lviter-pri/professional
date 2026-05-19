@@ -4,11 +4,106 @@
 
 [技术无止境-能解决问题才是时代所需](https://lviter-pri.github.io/professional/)，脱离了业务空谈技术都是耍流氓
 
- **Java 语言的设计初衷：Write once, run anywhere。我的目标是：Design once, scale everywhere.**
+**Java 语言的设计初衷：Write once, run anywhere。我的目标是：Design once, scale everywhere.**
+
+## SOA（面向服务的架构）
+
+SOA（Service-Oriented Architecture）是一种软件设计理念，将业务功能封装为可重用的服务。
+
+### 核心原则
+
+- **服务复用**：相同功能只实现一次，避免重复开发
+- **松耦合**：服务间通过标准接口通信，独立演进，互不影响
+- **标准化接口**：通过统一协议（如 SOAP、REST、gRPC）进行通信
+- **服务治理**：包括服务注册、发现、监控、版本管理等
+
+### 架构图
+
+```mermaid
+graph TB
+    subgraph 服务注册中心
+        Registry[服务注册中心]
+    end
+    
+    subgraph 服务提供者
+        ServiceA[服务 A]
+        ServiceB[服务 B]
+        ServiceC[服务 C]
+    end
+    
+    subgraph 服务消费者
+        Consumer1[消费者 1]
+        Consumer2[消费者 2]
+        Consumer3[消费者 3]
+    end
+    
+    ServiceA --> Registry
+    ServiceB --> Registry
+    ServiceC --> Registry
+    
+    Registry --> Consumer1
+    Registry --> Consumer2
+    Registry --> Consumer3
+    
+    Consumer1 --> ServiceA
+    Consumer2 --> ServiceB
+    Consumer3 --> ServiceC
+    Consumer1 --> ServiceB
+    Consumer2 --> ServiceC
+```
+
+## 康威定律（Conway's Law）
+
+> "If you have four groups working on a compiler, you will end up with a four-pass compiler.(四拨人一起写编译器，最后就会被拆成四个 pass)"
+>
+> — Melvin Conway, 1967
+
+系统的架构往往反映出创建它的组织的沟通结构。
+
+### 在软件架构中的应用
+
+- 微服务架构往往需要对应的组织结构调整
+- 团队边界应该与系统边界对齐
+- 避免跨团队的大范围服务调用，减少沟通成本
+- 独立团队负责独立服务，快速迭代
+
+### 实际案例
+
+- **亚马逊的"两个披萨原则"团队**：团队规模控制在两个披萨能喂饱的人数，确保沟通高效
+- **Spotify 的 Squad 模式**：小规模自治团队，拥有端到端的责任
+- **团队规模与系统复杂度**：大团队往往产生高耦合的系统，小团队更容易保持服务的独立性
+
+### 康威定律示意图
+
+```mermaid
+graph LR
+    subgraph 组织结构
+        TeamA[团队 A<br/>用户模块]
+        TeamB[团队 B<br/>订单模块]
+        TeamC[团队 C<br/>支付模块]
+    end
+    
+    subgraph 系统架构
+        UserService[用户服务]
+        OrderService[订单服务]
+        PaymentService[支付服务]
+    end
+    
+    TeamA --> UserService
+    TeamB --> OrderService
+    TeamC --> PaymentService
+    
+    style TeamA fill:#e1f5fe
+    style TeamB fill:#e8f5e8
+    style TeamC fill:#fff3e0
+    style UserService fill:#e1f5fe
+    style OrderService fill:#e8f5e8
+    style PaymentService fill:#fff3e0
+```
 
 ## 1. 精深训练的理念
 
-热爱 \| 重复 \| 坚持
+热爱 | 重复 | 坚持
 
 不断重复，从不停止。
 
@@ -46,16 +141,17 @@
 
 越过山丘，才发现无人等候！
 
--- 泰戈尔
+\-- 泰戈尔
 
----
+***
 
 ## 有任何问题联系我
 
-- **邮箱：lviter@163.com**
+- **邮箱：<lviter@163.com>**
 - **感谢大家，打赏码支持**
 - **优秀的文档大家一起学习，推荐几个地址**：
-    - [**美团技术团队**](https://tech.meituan.com/)
-    - [**阿里云内核月报**](https://www.bookstack.cn/read/aliyun-rds-core/summary.md)
+  - **[美团技术团队](https://tech.meituan.com/)**
+  - **[阿里云内核月报](https://www.bookstack.cn/read/aliyun-rds-core/summary.md)**
 
-      ![](static/image/donate.png)
+    ![](static/image/donate.png)
+
