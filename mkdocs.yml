@@ -5,36 +5,40 @@ repo_name: lviter-pri/professional
 
 theme:
   name: material
+
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
   palette:
-    # 浅色模式：采用清晰的深蓝色系
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep blue
-      accent: deep purple
+      primary: white
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: 切换深色模式
-    # 深色模式：采用更沉稳的 slate 结合高亮蓝
+
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep blue
-      accent: blue
+      primary: black
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: 切换浅色模式
+
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.indexes
-    - navigation.tracking # 自动更新 URL 哈希，增加专业感
+    - navigation.tracking
     - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.code.annotate
-    - content.tooltips # 鼠标悬停显示工具提示
-
+    - content.tooltips
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
