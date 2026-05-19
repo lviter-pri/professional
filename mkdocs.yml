@@ -30,7 +30,6 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.indexes
     - navigation.tracking
     - toc.follow
@@ -39,6 +38,7 @@ theme:
     - content.code.copy
     - content.code.annotate
     - content.tooltips
+    
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -66,5 +66,8 @@ plugins:
       lang: ["en", "zh"]
   - mkdocstrings:
       default_handler: python
+      
+extra_css:
+  - stylesheets/extra.css
 
 docs_dir: docs
