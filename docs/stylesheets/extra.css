@@ -1,5 +1,6 @@
 /* =========================
    左侧目录层级优化（清晰分组）
+   浅色/深色主题完全适配
    ========================= */
 
 /* 左侧整体 padding */
@@ -13,22 +14,23 @@
   line-height: 1.7;
   padding: 0.28rem 0.65rem;
   border-radius: 10px;
-  opacity: 0.88;
+  opacity: 0.85;
+  color: var(--md-default-fg-color);
   transition: all 0.15s ease;
 }
 
-/* hover 更轻一点 */
+/* hover 效果：使用 theme 的默认背景混合 */
 .md-nav__link:hover {
   opacity: 1;
-  background: rgba(255, 255, 255, 0.06);
+  background: color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
 }
 
 /* 当前选中的文章 */
 .md-nav__link--active {
   font-weight: 700;
   opacity: 1;
-  background: rgba(63, 81, 181, 0.20); /* indigo 背景 */
-  border-left: 3px solid #3f51b5;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 18%, transparent);
+  border-left: 3px solid var(--md-accent-fg-color);
   padding-left: 0.55rem;
 }
 
@@ -41,25 +43,25 @@
   padding-top: 0.45rem;
   padding-bottom: 0.45rem;
   letter-spacing: 0.3px;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--md-default-fg-color);
 }
 
 /* 分组标题 hover */
 .md-nav__item--section > .md-nav__link:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);
 }
 
 /* 子目录缩进更明显 */
 .md-nav__list .md-nav__list {
   padding-left: 1rem;
   margin-left: 0.5rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.10);
+  border-left: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
 }
 
-/* 让子条目更像树结构 */
+/* 子条目（更淡一点） */
 .md-nav__list .md-nav__list .md-nav__link {
   font-size: 0.80rem;
-  opacity: 0.78;
+  opacity: 0.75;
 }
 
 /* 子条目 hover */
@@ -73,10 +75,10 @@
 }
 
 .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: color-mix(in srgb, var(--md-default-fg-color) 18%, transparent);
   border-radius: 10px;
 }
 
 .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: color-mix(in srgb, var(--md-default-fg-color) 28%, transparent);
 }
