@@ -1,0 +1,67 @@
+/* =========================
+   左侧目录（导航栏）优化
+   ========================= */
+
+/* 整体导航字体更简约 */
+.md-nav__link {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* hover 效果更柔和 */
+.md-nav__link:hover {
+  background: rgba(100, 100, 100, 0.12);
+}
+
+/* 当前选中的页面（active item）更明显 */
+.md-nav__link--active {
+  font-weight: 600;
+  background: rgba(63, 81, 181, 0.15); /* indigo 轻背景 */
+  border-left: 3px solid #3f51b5;
+  padding-left: 0.55rem;
+}
+
+/* 当前选中的标题也突出一点 */
+.md-nav__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.6rem 0.6rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 分组标题更有层次 */
+.md-nav__item--section > .md-nav__link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 0.4rem;
+  opacity: 0.95;
+}
+
+/* 子目录缩进更清晰 */
+.md-nav__list .md-nav__list {
+  padding-left: 0.8rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  margin-left: 0.4rem;
+}
+
+/* 让目录整体更紧凑，但不挤 */
+.md-sidebar__scrollwrap {
+  padding: 0.5rem 0.3rem;
+}
+
+/* 目录滚动条更细更现代（Chrome） */
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 6px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
