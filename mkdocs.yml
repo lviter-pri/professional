@@ -80,15 +80,15 @@ nav:
       - 开发规范: 'AI编程/Rules/company_rule/develop-wiki.md'
       - Git规范: 'AI编程/Rules/company_rule/git_rule.md'
     - Skills:
-      - 索引: 'AI编程/skills/devlop-doc/develop-design.md'
-      - 框架日志:
-        - 索引: 'AI编程/skills/framework-logging/skill.md'
-        - 基础使用: 'AI编程/skills/framework-logging/basic/skill.md'
-        - 配置详解: 'AI编程/skills/framework-logging/config/skill.md'
-        - MDC追踪: 'AI编程/skills/framework-logging/mdc/skill.md'
-        - 敏感信息: 'AI编程/skills/framework-logging/sensitive/skill.md'
-        - 问题排查: 'AI编程/skills/framework-logging/troubleshooting/skill.md'
-      - Git提交: 'AI编程/skills/git-commit/SKILL.md'
+      - 开发设计skill: 'AI编程/skills/devlop-doc/develop-design.md'
+      - 框架日志skill:
+        - 基础skill: 'AI编程/skills/framework-logging/skill.md'
+        - 基础使用skill: 'AI编程/skills/framework-logging/basic/skill.md'
+        - 配置详解skill: 'AI编程/skills/framework-logging/config/skill.md'
+        - MDC追踪skill: 'AI编程/skills/framework-logging/mdc/skill.md'
+        - 敏感信息skill: 'AI编程/skills/framework-logging/sensitive/skill.md'
+        - 问题排查skill: 'AI编程/skills/framework-logging/troubleshooting/skill.md'
+      - Git提交skill: 'AI编程/skills/git-commit/SKILL.md'
   - Java核心:
     - 索引: 'Java-核心/README.md'
     - JVM:
