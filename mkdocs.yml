@@ -257,12 +257,14 @@ nav:
   - 数据库:
     - 索引: '数据库/README.md'
     - MySQL:
+      - 索引: '数据库/mysql/README.md'
       - 系统学习Mysql: '数据库/mysql/系统学习Mysql.md'
       - Mysql实战基础篇: '数据库/mysql/Mysql实战-基础篇.md'
       - Mysql实战实践篇: '数据库/mysql/Mysql实战-实践篇.md'
       - Mysql存储引擎: '数据库/mysql/Mysql的存储引擎.md'
       - Mysql执行SQL: '数据库/mysql/Mysql是怎么执行一条SQL查询的.md'
       - InnoDB更新操作: '数据库/mysql/InnoDB的一次更新操作是怎么执行的.md'
+      - InnoDB如何解决脏读、不可重复度以及幻读: '数据库/mysql/InnoDB如何解决脏读、不可重复度以及幻读.md'
       - ACID与事务隔离: '数据库/mysql/ACID与事务隔离级别.md'
       - MVCC: '数据库/mysql/MVCC.md'
       - Mysql踩坑null: '数据库/mysql/Mysql踩坑-null查询.md'
