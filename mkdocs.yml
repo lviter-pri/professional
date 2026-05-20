@@ -226,6 +226,7 @@ nav:
       - 索引: '分布式与微服务/dubbo/README.md'
       - Dubbo: '分布式与微服务/dubbo/Dubbo.md'
       - 分布式服务框架: '分布式与微服务/dubbo/分布式服务框架.md'
+      - Dubbo与JDK SPI对比: '分布式与微服务/dubbo/Dubbo和JDK的SPI对比.md'
     - 微服务保护:
       - 防止雪崩: '分布式与微服务/微服务保护/防止雪崩.md'
       - 限流降级与熔断: '分布式与微服务/微服务保护/限流降级与熔断.md'
@@ -259,6 +260,9 @@ nav:
       - 系统学习Mysql: '数据库/mysql/系统学习Mysql.md'
       - Mysql实战基础篇: '数据库/mysql/Mysql实战-基础篇.md'
       - Mysql实战实践篇: '数据库/mysql/Mysql实战-实践篇.md'
+      - Mysql存储引擎: '数据库/mysql/Mysql的存储引擎.md'
+      - Mysql执行SQL: '数据库/mysql/Mysql是怎么执行一条SQL查询的.md'
+      - InnoDB更新操作: '数据库/mysql/InnoDB的一次更新操作是怎么执行的.md'
       - ACID与事务隔离: '数据库/mysql/ACID与事务隔离级别.md'
       - MVCC: '数据库/mysql/MVCC.md'
       - Mysql踩坑null: '数据库/mysql/Mysql踩坑-null查询.md'
