@@ -265,6 +265,8 @@ nav:
       - Mysql执行SQL: '数据库/mysql/Mysql是怎么执行一条SQL查询的.md'
       - InnoDB更新操作: '数据库/mysql/InnoDB的一次更新操作是怎么执行的.md'
       - InnoDB如何解决脏读、不可重复度以及幻读: '数据库/mysql/InnoDB如何解决脏读、不可重复度以及幻读.md'
+      - Mysql锁机制: '数据库/mysql/Mysql中的锁.md'
+      - InnoDB千万数据索引: '数据库/mysql/InnoDB生产环境千万数据量如何加索引.md'
       - ACID与事务隔离: '数据库/mysql/ACID与事务隔离级别.md'
       - MVCC: '数据库/mysql/MVCC.md'
       - Mysql踩坑null: '数据库/mysql/Mysql踩坑-null查询.md'
