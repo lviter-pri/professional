@@ -80,15 +80,15 @@ nav:
       - 开发规范: 'AI编程/Rules/company_rule/develop-wiki.md'
       - Git规范: 'AI编程/Rules/company_rule/git_rule.md'
     - Skills:
-      - 索引: 'AI编程/skills/devlop-doc/develop-design.md'
-      - 框架日志:
-        - 索引: 'AI编程/skills/framework-logging/skill.md'
-        - 基础使用: 'AI编程/skills/framework-logging/basic/skill.md'
-        - 配置详解: 'AI编程/skills/framework-logging/config/skill.md'
-        - MDC追踪: 'AI编程/skills/framework-logging/mdc/skill.md'
-        - 敏感信息: 'AI编程/skills/framework-logging/sensitive/skill.md'
-        - 问题排查: 'AI编程/skills/framework-logging/troubleshooting/skill.md'
-      - Git提交: 'AI编程/skills/git-commit/SKILL.md'
+      - 开发设计skill: 'AI编程/skills/devlop-doc/develop-design.md'
+      - 框架日志skill:
+        - 基础skill: 'AI编程/skills/framework-logging/skill.md'
+        - 基础使用skill: 'AI编程/skills/framework-logging/basic/skill.md'
+        - 配置详解skill: 'AI编程/skills/framework-logging/config/skill.md'
+        - MDC追踪skill: 'AI编程/skills/framework-logging/mdc/skill.md'
+        - 敏感信息skill: 'AI编程/skills/framework-logging/sensitive/skill.md'
+        - 问题排查skill: 'AI编程/skills/framework-logging/troubleshooting/skill.md'
+      - Git提交skill: 'AI编程/skills/git-commit/SKILL.md'
   - Java核心:
     - 索引: 'Java-核心/README.md'
     - JVM:
@@ -264,7 +264,13 @@ nav:
       - Mysql存储引擎: '数据库/mysql/Mysql的存储引擎.md'
       - Mysql执行SQL: '数据库/mysql/Mysql是怎么执行一条SQL查询的.md'
       - InnoDB更新操作: '数据库/mysql/InnoDB的一次更新操作是怎么执行的.md'
+      - InnoDB数据结构: '数据库/mysql/InnoDB中的数据结构.md'
+      - 减少回表操作: '数据库/mysql/如何减少回表操作.md'
+      - 深度分页优化: '数据库/mysql/Mysql深度分页如何优化.md'
+      - 热点数据高效更新: '数据库/mysql/Mysql怎么做热点数据高效更新.md'
       - InnoDB如何解决脏读、不可重复度以及幻读: '数据库/mysql/InnoDB如何解决脏读、不可重复度以及幻读.md'
+      - Mysql锁机制: '数据库/mysql/Mysql中的锁.md'
+      - InnoDB千万数据索引: '数据库/mysql/InnoDB生产环境千万数据量如何加索引.md'
       - ACID与事务隔离: '数据库/mysql/ACID与事务隔离级别.md'
       - MVCC: '数据库/mysql/MVCC.md'
       - Mysql踩坑null: '数据库/mysql/Mysql踩坑-null查询.md'
