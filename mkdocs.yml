@@ -72,6 +72,8 @@ nav:
   - 首页: index.md
   - AI编程:
     - OpenSpec: 'AI编程/OpenSpec/Trae + OpenSpec 实践教程.md'
+    - 大模型简介: 'AI编程/AI和大模型/大模型简介.md'
+    - 大模型幻觉原因: 'AI编程/AI和大模型/大模型产生幻觉的原因.md'
     - Rules:
       - 索引: 'AI编程/Rules/index.md'
       - 公司规范: 'AI编程/Rules/company_rule/company_rule.md'
