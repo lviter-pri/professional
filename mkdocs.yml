@@ -72,6 +72,8 @@ nav:
   - 首页: index.md
   - AI编程:
     - OpenSpec: 'AI编程/OpenSpec/Trae + OpenSpec 实践教程.md'
+    - 大模型简介: 'AI编程/AI和大模型/大模型简介.md'
+    - 大模型幻觉原因: 'AI编程/AI和大模型/大模型产生幻觉的原因.md'
     - Rules:
       - 索引: 'AI编程/Rules/index.md'
       - 公司规范: 'AI编程/Rules/company_rule/company_rule.md'
@@ -184,9 +186,12 @@ nav:
       - 索引: '中间件/消息队列/消息队列.md'
       - Kafka:
         - Kafka入门: '中间件/消息队列/Kafka/Kafka入门.md'
+        - Kafka架构: '中间件/消息队列/Kafka/Kafka架构.md'
+        - Kafka消息不丢失: '中间件/消息队列/Kafka/Kafka如何保证消息不丢失.md'
         - Kafka重复消费: '中间件/消息队列/Kafka/Kafka消费超时导致重复消费.md'
       - RabbitMQ:
         - RabbitMQ安装使用: '中间件/消息队列/RabbitMq/RabbitMQ安装及使用.md'
+      - MQ对比: '中间件/消息队列/Kafka,RabbitMQ,RocketMQ区别.md'
   - 分布式与微服务:
     - 索引: '分布式与微服务/README.md'
     - Spring:
