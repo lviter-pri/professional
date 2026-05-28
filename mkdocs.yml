@@ -179,9 +179,13 @@ nav:
     - Redis:
       - 索引: '中间件/redis/README.md'
       - Redis数据结构: '中间件/redis/Redis数据结构.md'
+      - Redis有哪些数据结构: '中间件/redis/Redis有哪些数据结构.md'
       - Redis延迟队列: '中间件/redis/Redis实现延迟队列.md'
       - Redis基础篇: '中间件/redis/Redis核心1-11基础篇.md'
       - Redis高级篇: '中间件/redis/Redis核心12-21高级篇.md'
+      - Redis分布式锁: '中间件/redis/Redis分布式锁.md'
+      - ZSet排行榜: '中间件/redis/基于ZSet做排行榜更新.md'
+      - 布隆过滤器: '中间件/redis/布隆过滤器.md'
     - 消息队列:
       - 索引: '中间件/消息队列/消息队列.md'
       - Kafka:
@@ -307,6 +311,7 @@ nav:
       - Apache CXF: '方案/偏门但研究过的东西/Apache CXF.md'
       - SpringSecurity: '方案/偏门但研究过的东西/SpringSecurity.md'
     - 解决方案:
+      - 分布式唯一ID: '方案/解决方案/分布式唯一id怎么生成.md'
       - 7千万用户分库分表: '方案/解决方案/7千万+用户数据分库分表.md'
       - AppleId授权登录: '方案/解决方案/AppleId第三方授权登录流程调研.md'
       - Idea远程调试: '方案/解决方案/Idea远程调试监控端口.md'
@@ -337,6 +342,8 @@ nav:
       - 计算机网络概述: '编程基础/计算机网络原理/计算机网络概述.md'
     - QPS概念: '编程基础/QPS概念.md'
     - 与或异或: '编程基础/与、或、异或.md'
+    - HTTP与TCP: '编程基础/Http与TCP.md'
+    - 分布式唯一ID: '编程基础/分布式唯一id怎么生成.md'
   - 工具类:
     - Mermaid: '工具类/Mermaid.md'
     - java调用方法: '工具类/java调用方法类.md'

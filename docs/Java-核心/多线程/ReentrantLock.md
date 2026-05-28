@@ -335,7 +335,7 @@ flowchart TD
     B -->|是| D{处理异常?}
     D -->|否| E[添加异常处理]
     D -->|是| F{考虑超时?}
-    F -->|是| G[使用tryLock(timeout)]
+    F -->|是| G[使用tryLock（timeout）]
     F -->|否| H[正常使用]
 ```
 
