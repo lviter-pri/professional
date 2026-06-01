@@ -1,64 +1,548 @@
-# Spring @Transactional
+# Spring @Transactional 详解
 
-概念：用户的一系列数据库操作，增删改查，这些操作可视为一个完整的逻辑处理工作单元，要么全部执行，要么全部不执行，是不可分割的工作单元。
+## 一、事务概念
 
-## Spring事务
+事务是用户的一系列数据库操作（增删改查），这些操作可视为一个完整的逻辑处理工作单元，**要么全部执行，要么全部不执行**，是不可分割的工作单元。
 
-- 编程式事务：类似于JDBC编程实现事务管理。管理使用TransactionTemplate或者直接使用底层的PlatformTransactionManager。对于编程式事务管理，Spring推荐使用TransactionTemplate
-- 声明式事务：管理建立在 AOP 之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务
-- @Transactional注解：只能标注共有方法，可以加在方法以及类上，类上增加的整个类的所有公共方法都会支持事务。
-  - rollbackFor，遇到异常即回滚
-  - noRollbackFor，遇到指定异常不回滚
-  - timeout单位为秒，超时属性，事务在强制回滚之前可以保持多久，可以防止长期运行的事务占用资源
-  - readOnly，只读属性，表示这个事务只读取数据但不更新数据，这样可以帮助数据库引擎优化事务
+```mermaid
+flowchart TD
+    A[开始事务] --> B[操作1]
+    B --> C[操作2]
+    C --> D[操作3]
+    D --> E{是否全部成功?}
+    E -->|是| F[提交事务]
+    E -->|否| G[回滚事务]
+```
 
-## Spring事务需要解决的问题
+## 二、Spring 事务管理方式
 
-- serviceA方法调用了serviceB方法，两个方法都有事务，这个时候serviceB方法异常，是serviceB方法提交，还是两个一起回滚
-- serviceA方法调用了serviceB方法，但是只有serviceA方法有事务，是否把serviceB也加入serviceA的事务，如果serviceB异常，是否回滚serviceA
-- serviceA方法调用了serviceB方法，两者都有事务，serviceB方法已经正常执行完，但serviceA异常，是否需要回滚serviceB
+### 2.1 编程式事务
 
-## 传播机制--7种事务传播机制
+类似于 JDBC 编程实现事务管理，使用 `TransactionTemplate` 或 `PlatformTransactionManager`。
 
-spring是用AOP来代理事务控制，是针对接口或类的，所以同一个service类中两个方法的调用，传播机制是不生效的。
-原因：在spring中，当一个方法开启事务时，spring创建这个方法的类的bean对象，则创建该对象的代理对象。spring中调用bean对象的方法才会去判断方法上的注解。在代理bean对象中，一个方法调用本身的另一个方法，实则调用的代理对象的原始对象（不属于
-spring bean）的方法，调用方法时不会去判断方法上的注解。这就是传播机制不生效的原因
-解决：获取到当前service的代理类即可实现调用自己类的方法：自身类注入自己；AopContext.currentProxy来获取，但是此方法需要再启动类开启exposeProxy注释（@EnableAspectJAutoProxy(
-exposeProxy = true)）
+```java
+@Autowired
+private TransactionTemplate transactionTemplate;
 
-- **PROPAGATION_REQUIRED**
-    - spring的默认事务传播类型required:如果当前没有事务，则新建事务；
-    - 如果已经存在事务，则加入当前事务，合并成一个事务
-- **REQUIRES_NEW**
-    - 新建事务，如果存在当前事务，则把当前事务挂起；
-    - 这个方法独立事务，不受调用者影响，调用者异常也不会影响当前事务提交
-- **NESTED**
-    - 当前没有事务，会新建事务
-    - 有事务，会作为父级事务的一个子事务，方法结束后并没有提交，等父事务提交它才提交
-    - 如果它异常，父级可以捕获它的异常而不进行回滚，正常提交
-    - 如果父级异常，它必然回滚
-- **SUPPORTS**
-    - 如果当前存在事务，就加入当前事务
-    - 如果不存在事务，则已无事务方式运行，和不写没区别
-- **NOT_SUPPORTED**
-    - 非事务运行
-    - 如果当前存在事务，将当前事务挂起
-- **MANDATORY**
-    - 如果当前有事务，则运行在当前事务中
-    - 如果当前没有事务，则抛出异常，即父方法必须有事务
-- **NEVER**
-    - 以非事务方法运行，如果当前有事务即抛异常；不允许父方法有事务
+public void saveUser(User user) {
+    transactionTemplate.execute(status -> {
+        // 数据库操作
+        userRepository.save(user);
+        return null;
+    });
+}
+```
 
-## Spring事务失效的11种场景
+### 2.2 声明式事务
 
-1. 访问权限问题，spring要求被代理方法必须是public的。spring源码种，如果目标方法不是public，则TransactionAttribute返回null，不支持事务
-2. 方法用final修饰，也会导致失效，因为spring事务底层是aop，用了jdk的动态代理或者cglib的动态代理，会生成代理类，在代理类中实现事务功能（static修饰同样失效）
-3. 直接调用内部方法，解决方案应该注入自己调用或者使用AopContext.currentProxy来获取
-4. 未被Spring管理，当然无法使用spring事务
-5. 多线程调用，重新new一个线程调用带事务的方法，因为线程不同，获取到数据库连接不一样，从而是两个不同的事务。spring事务时通过数据库连接实现的，当前线程保存了一个map,key是数据源，value是数据库连接
-6. 表不支持事务，如myisam引擎
-7. 事务没有开启，如果springboot项目，事务默认是开启的，但spring项目，需要xml配置
-8. 事务传播特性，只有PROPAGATION_REQUIRED、REQUIRES_NEW、NESTED这三种才会创建新事务
-9. try...catch自己捕获了异常，导致事务不回滚
-10. 手动抛了spring事务不支持的异常，也不会回滚。spring事务，默认情况下只回滚RuntimeException运行时异常和Error错误，对于普通的非运行时异常，不会回滚
-11. 指定了rollbackFor异常回滚，但是并不是报的此类异常，也不会捕获回滚
+建立在 AOP 之上，通过 `@Transactional` 注解实现。
+
+```java
+@Service
+public class UserService {
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Transactional
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+### 2.3 @Transactional 注解属性
+
+| 属性 | 说明 | 默认值 |
+| :--- | :--- | :--- |
+| `rollbackFor` | 指定哪些异常触发回滚 | RuntimeException 和 Error |
+| `noRollbackFor` | 指定哪些异常不触发回滚 | 无 |
+| `timeout` | 事务超时时间（秒） | -1（永不超时） |
+| `readOnly` | 是否只读事务 | false |
+| `propagation` | 事务传播机制 | REQUIRED |
+| `isolation` | 事务隔离级别 | 数据库默认 |
+
+## 三、Spring 事务需要解决的问题
+
+1. **serviceA 调用 serviceB，两者都有事务**：serviceB 异常，是回滚 serviceB 还是两个一起回滚？
+2. **serviceA 有事务，serviceB 无事务**：serviceB 是否加入 serviceA 的事务？
+3. **serviceA 调用 serviceB，两者都有事务**：serviceB 执行完后 serviceA 异常，是否回滚 serviceB？
+
+## 四、事务传播机制（7种）
+
+### 4.1 传播机制概述
+
+Spring 使用 AOP 代理事务控制，**同一个类中方法互相调用时传播机制不生效**！
+
+**原因**：Spring 事务通过代理对象实现，同一类内部方法调用是直接调用原始对象方法，不走代理。
+
+**解决方案**：
+- 注入自身 bean 调用
+- 使用 `AopContext.currentProxy()`（需配置 `@EnableAspectJAutoProxy(exposeProxy = true)`）
+
+### 4.2 7种传播机制详解
+
+#### PROPAGATION_REQUIRED（默认）
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+    // 如果当前没有事务，新建事务
+    // 如果已有事务，加入当前事务
+    methodB();
+}
+
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodB() {
+    // 与 methodA 在同一事务中
+}
+```
+
+**场景**：最常用，大部分业务方法使用。
+
+#### PROPAGATION_REQUIRES_NEW
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+    try {
+        methodB(); // 独立事务
+    } catch (Exception e) {
+        // methodB 失败不影响 methodA
+    }
+    // methodA 继续执行
+}
+
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void methodB() {
+    // 新建独立事务，挂起 methodA 的事务
+}
+```
+
+**场景**：日志记录、审计日志等需要独立提交的操作。
+
+#### PROPAGATION_NESTED
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+    try {
+        methodB(); // 子事务
+    } catch (Exception e) {
+        // 捕获异常，methodA 可以继续提交
+    }
+}
+
+@Transactional(propagation = Propagation.NESTED)
+public void methodB() {
+    // 作为 methodA 的子事务
+}
+```
+
+**场景**：需要部分回滚的场景。
+
+#### PROPAGATION_SUPPORTS
+
+```java
+@Transactional(propagation = Propagation.SUPPORTS)
+public void methodA() {
+    // 如果当前有事务，加入事务
+    // 如果没有事务，以非事务方式运行
+}
+```
+
+**场景**：查询方法，可选事务支持。
+
+#### PROPAGATION_NOT_SUPPORTED
+
+```java
+@Transactional(propagation = Propagation.NOT_SUPPORTED)
+public void methodA() {
+    // 以非事务方式运行
+    // 如果当前有事务，挂起事务
+}
+```
+
+**场景**：不需要事务的操作，如纯读取。
+
+#### PROPAGATION_MANDATORY
+
+```java
+@Transactional(propagation = Propagation.MANDATORY)
+public void methodA() {
+    // 必须在事务中运行
+    // 如果没有事务，抛出异常
+}
+```
+
+**场景**：必须在事务上下文执行的关键操作。
+
+#### PROPAGATION_NEVER
+
+```java
+@Transactional(propagation = Propagation.NEVER)
+public void methodA() {
+    // 必须以非事务方式运行
+    // 如果有事务，抛出异常
+}
+```
+
+**场景**：明确不允许在事务中执行的操作。
+
+### 4.3 传播机制对比表
+
+| 传播机制 | 无事务时 | 有事务时 | 适用场景 |
+| :--- | :--- | :--- | :--- |
+| REQUIRED | 新建事务 | 加入当前事务 | 默认，通用场景 |
+| REQUIRES_NEW | 新建事务 | 挂起当前，新建事务 | 独立事务 |
+| NESTED | 新建事务 | 作为子事务 | 部分回滚 |
+| SUPPORTS | 非事务运行 | 加入当前事务 | 可选事务 |
+| NOT_SUPPORTED | 非事务运行 | 挂起当前事务 | 纯读取 |
+| MANDATORY | 抛出异常 | 加入当前事务 | 必须事务 |
+| NEVER | 非事务运行 | 抛出异常 | 禁止事务 |
+
+---
+
+## 五、事务失效的 11 种场景及示例
+
+### 5.1 访问权限问题（private/protected）
+
+```java
+@Service
+public class UserService {
+    
+    // ❌ 失效：private 方法不支持事务
+    @Transactional
+    private void saveUser(User user) {
+        userRepository.save(user);
+    }
+    
+    // ✅ 正确：必须是 public
+    @Transactional
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+**原因**：Spring AOP 默认只拦截 public 方法，源码中 `TransactionAttribute` 返回 null。
+
+### 5.2 方法用 final 修饰
+
+```java
+@Service
+public class UserService {
+    
+    // ❌ 失效：final 方法无法被代理
+    @Transactional
+    public final void saveUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+**原因**：Spring 事务底层是 AOP，需要生成代理类覆盖方法，final 方法无法被覆盖。
+
+### 5.3 方法用 static 修饰
+
+```java
+@Service
+public class UserService {
+    
+    // ❌ 失效：static 方法属于类，不属于对象
+    @Transactional
+    public static void saveUser(User user) {
+        // ...
+    }
+}
+```
+
+**原因**：静态方法不属于实例，无法被代理。
+
+### 5.4 同一类内部方法调用
+
+```java
+@Service
+public class UserService {
+    
+    @Transactional
+    public void createOrder(Order order) {
+        // 调用同一类的方法，事务不生效
+        updateInventory(); // ❌ 事务失效
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateInventory() {
+        // 库存更新
+    }
+}
+```
+
+**解决方案**：
+
+```java
+@Service
+public class UserService {
+    
+    // 方案1：注入自身
+    @Autowired
+    private UserService userService;
+    
+    @Transactional
+    public void createOrder(Order order) {
+        userService.updateInventory(); // ✅ 使用代理对象
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateInventory() {
+        // 库存更新
+    }
+}
+
+// 方案2：使用 AopContext
+@Service
+public class UserService {
+    
+    @Transactional
+    public void createOrder(Order order) {
+        UserService proxy = (UserService) AopContext.currentProxy();
+        proxy.updateInventory(); // ✅ 使用代理对象
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateInventory() {
+        // 库存更新
+    }
+}
+```
+
+### 5.5 未被 Spring 管理
+
+```java
+// ❌ 失效：不是 Spring Bean
+public class UserService {
+    
+    @Transactional
+    public void saveUser(User user) {
+        // ...
+    }
+}
+
+// 使用时直接 new，不是从 Spring 容器获取
+UserService service = new UserService(); // ❌
+```
+
+**原因**：只有 Spring 管理的 Bean 才能使用事务。
+
+### 5.6 多线程调用
+
+```java
+@Service
+public class UserService {
+    
+    @Autowired
+    private OrderService orderService;
+    
+    @Transactional
+    public void createUserWithOrder(User user) {
+        userRepository.save(user);
+        
+        // ❌ 新线程中事务失效
+        new Thread(() -> {
+            orderService.createOrder(user.getId()); // 独立事务
+        }).start();
+    }
+}
+```
+
+**原因**：Spring 事务通过 ThreadLocal 绑定数据库连接，新线程获取不到同一个连接。
+
+### 5.7 数据库存储引擎不支持事务
+
+```sql
+-- ❌ MyISAM 不支持事务
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+) ENGINE=MyISAM;
+
+-- ✅ InnoDB 支持事务
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+) ENGINE=InnoDB;
+```
+
+### 5.8 事务没有开启
+
+```java
+// Spring Boot 默认开启事务
+// 如果是 Spring MVC 需要配置
+@Configuration
+@EnableTransactionManagement // ✅ 必须添加此注解
+public class TransactionConfig {
+    // ...
+}
+```
+
+### 5.9 错误的事务传播特性
+
+```java
+@Service
+public class UserService {
+    
+    // ❌ SUPPORTS 在无事务上下文时不开启事务
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+**只有以下三种传播机制会创建新事务**：
+- `REQUIRED`
+- `REQUIRES_NEW`
+- `NESTED`
+
+### 5.10 try-catch 捕获异常
+
+```java
+@Service
+public class UserService {
+    
+    @Transactional
+    public void createUser(User user) {
+        try {
+            userRepository.save(user);
+            // 其他操作...
+            throw new RuntimeException("异常");
+        } catch (Exception e) {
+            // ❌ 捕获异常，事务不会回滚
+            log.error("保存失败", e);
+        }
+    }
+}
+```
+
+**正确做法**：
+
+```java
+@Transactional
+public void createUser(User user) {
+    try {
+        userRepository.save(user);
+        throw new RuntimeException("异常");
+    } catch (Exception e) {
+        log.error("保存失败", e);
+        throw e; // ✅ 重新抛出异常
+    }
+}
+```
+
+### 5.11 抛出非受检异常（不配置 rollbackFor）
+
+```java
+@Service
+public class UserService {
+    
+    // ❌ 默认只回滚 RuntimeException 和 Error
+    @Transactional
+    public void createUser(User user) throws Exception {
+        userRepository.save(user);
+        throw new Exception("业务异常"); // 不会回滚！
+    }
+}
+```
+
+**正确做法**：
+
+```java
+// ✅ 指定 rollbackFor
+@Transactional(rollbackFor = Exception.class)
+public void createUser(User user) throws Exception {
+    userRepository.save(user);
+    throw new Exception("业务异常"); // 会回滚
+}
+```
+
+---
+
+## 六、事务隔离级别
+
+### 6.1 隔离级别说明
+
+| 隔离级别 | 说明 | 脏读 | 不可重复读 | 幻读 |
+| :--- | :--- | :--- | :--- | :--- |
+| READ_UNCOMMITTED | 读未提交 | ✅ | ✅ | ✅ |
+| READ_COMMITTED | 读已提交 | ❌ | ✅ | ✅ |
+| REPEATABLE_READ | 可重复读 | ❌ | ❌ | ✅ |
+| SERIALIZABLE | 串行化 | ❌ | ❌ | ❌ |
+
+### 6.2 使用示例
+
+```java
+@Transactional(isolation = Isolation.READ_COMMITTED)
+public void queryUser(Long id) {
+    // 使用读已提交隔离级别
+}
+```
+
+---
+
+## 七、最佳实践
+
+### 7.1 事务配置建议
+
+```java
+// 推荐配置
+@Transactional(
+    propagation = Propagation.REQUIRED,
+    isolation = Isolation.DEFAULT,
+    rollbackFor = Exception.class,
+    timeout = 30
+)
+public void doBusiness() {
+    // 业务逻辑
+}
+```
+
+### 7.2 注意事项
+
+1. **避免大事务**：事务范围越小越好，不要在事务中执行耗时操作
+2. **避免循环依赖**：事务方法相互调用可能导致循环依赖
+3. **正确处理异常**：不要吞掉异常，需要回滚时要抛出异常
+4. **使用合适的传播机制**：根据业务需求选择传播机制
+5. **事务方法粒度**：一个事务方法只做一件事
+
+### 7.3 常见错误配置
+
+| 错误配置 | 问题 | 正确做法 |
+| :--- | :--- | :--- |
+| 不指定 rollbackFor | 非 RuntimeException 不回滚 | `rollbackFor = Exception.class` |
+| 大事务 | 占用资源时间长 | 拆分事务 |
+| 事务中调用外部系统 | 网络延迟导致事务超时 | 使用消息队列异步处理 |
+
+---
+
+## 八、总结
+
+### 8.1 事务失效检查清单
+
+- [ ] 方法是否为 public
+- [ ] 方法是否被 final 或 static 修饰
+- [ ] 是否通过 Spring Bean 调用
+- [ ] 是否在同一类内部调用
+- [ ] 是否正确配置了事务注解
+- [ ] 是否吞掉了异常
+- [ ] 是否抛出了正确的异常类型
+- [ ] 数据库引擎是否支持事务
+- [ ] 事务是否已开启（@EnableTransactionManagement）
+- [ ] 传播机制是否正确
+
+### 8.2 核心要点
+
+1. **Spring 事务基于 AOP 代理实现**
+2. **同一类内部方法调用不走代理**
+3. **默认只回滚 RuntimeException**
+4. **事务通过数据库连接实现，依赖 ThreadLocal**
+5. **合理选择传播机制和隔离级别**

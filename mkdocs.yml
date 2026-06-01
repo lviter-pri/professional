@@ -201,6 +201,8 @@ nav:
     - Spring:
       - 索引: '分布式与微服务/Spring/README.md'
       - SpringAOP: '分布式与微服务/Spring/SpringAOP.md'
+      - SpringBean生命周期: '分布式与微服务/Spring/SpringBean生命周期.md'
+      - Spring设计模式: '分布式与微服务/Spring/Spring设计模式.md'
       - Spring事务: '分布式与微服务/Spring/Spring事务.md'
       - InitializingBean: '分布式与微服务/Spring/InitillizingBean.md'
       - TransactionSynchronizationManager: '分布式与微服务/Spring/TransactionSynchronizationManager.md'
